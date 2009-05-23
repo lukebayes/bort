@@ -1,0 +1,12 @@
+ div#flash-notice {}
+div#flash-warning {}
+div#flash-error {}
+ div#errorExplanation {}
+div#errorExplanation h2 {}
+div#errorExplanation p {}
+div#errorExplanation ul {}
+div#errorExplanation ul li {}
+ div.fieldWithErrors {}
+div.fieldWithErrors label {}
+div.fieldWithErrors input, div.fieldWithErrors select, div.fieldWithErrors textarea {}
+#openid-options a {cursor: pointer}

@@ -1,12 +1,12 @@
 --- 
 javascripts: 
 - base: 
+  - jquery-1.3.2.min
   - prototype
   - effects
   - dragdrop
   - controls
   - application
 stylesheets: 
-- base:
+- base: 
   - base
-

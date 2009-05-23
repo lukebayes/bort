@@ -17,4 +17,8 @@ module ApplicationHelper
     messages
   end
   
+  def image_url(name)
+    return "/images/#{name}"
+  end
+  
 end
