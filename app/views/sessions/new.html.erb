@@ -1,13 +1,5 @@
 <%= title "Login", :h2 %>
 <% form_tag session_path do %>
-  <script language="javascript">
-    function setProviderOpenId(url) {
-      var openid_input = $('#openid_url');
-      openid_input.val(url);
-      return true;
-    }
-  </script>
-
     <fieldset>
         <legend>Your Details</legend>
         <ol>
@@ -35,11 +27,11 @@
             <li>
                 <p>Or Log in with a provider below:</p>
 
-                <p><input onClick="return setProviderOpenId('http://yahoo.com');" name="commit" type="image" src="<%= image_url 'openid-yahoo-yellow.png' %>" value="Login With Yahoo!" alt="Login with Yahoo!" /></p>
-                
-                <p><input onClick="return setProviderOpenId('https://www.google.com/accounts/o8/ud');" name="commit" type="submit" value="Login With Google" alt="Login with Google" /></p>
+                <p><input onClick="return $('#openid_url').val('http://yahoo.com');" name="commit" type="image" src="<%= image_url 'openid-yahoo-yellow.png' %>" value="Login With Yahoo!" alt="Login with Yahoo!" /></p>
 
-<!--
+                <p><input onClick="return $('#openid_url').val('https://www.google.com/accounts/o8/ud');" name="commit" type="submit" value="Login With Google" alt="Login with Google" /></p>
+
+<!--                
                 <p><input onClick="return setProviderOpenId('http://twitter.com');" name="commit" type="image" src="<%= image_url 'openid-twitter-dark.png' %>" value="Login With Twitter" alt="Login with Twitter" /></p>
                 
                 <p><input onClick="return setProviderOpenId('https://live.com');" name="commit" type="submit" value="Login With Microsoft" alt="Login with Microsoft" /></p>
