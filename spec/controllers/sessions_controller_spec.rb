@@ -89,8 +89,12 @@ describe SessionsController do
     before do 
       login_as :quentin
     end
-    it 'logs me out'                   do controller.should_receive(:logout_killing_session!); do_destroy end
-    it 'redirects me to the home page' do do_destroy; response.should be_redirect     end
+    it 'logs me out' do 
+      controller.should_receive(:logout_killing_session!); do_destroy
+    end
+    it 'redirects me to the home page' do
+      do_destroy; response.should be_redirect
+    end
   end
   
 end
@@ -101,7 +105,7 @@ describe SessionsController do
       route_for(:controller => 'sessions', :action => 'new').should == "/login"
     end
     it "should route the create sessions correctly" do
-      route_for(:controller => 'sessions', :action => 'create').should == "/session"
+      route_for(:controller => 'sessions', :action => 'create').should == {:path => '/session', :method => :post}
     end
     it "should route the destroy sessions action correctly" do
       route_for(:controller => 'sessions', :action => 'destroy').should == "/logout"
