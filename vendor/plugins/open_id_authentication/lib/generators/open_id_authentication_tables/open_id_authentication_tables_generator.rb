@@ -1,4 +1,4 @@
-class UpgradeOpenIdAuthenticationTablesGenerator < Rails::Generator::NamedBase
+class OpenIdAuthenticationTablesGenerator < Rails::Generator::NamedBase
   def initialize(runtime_args, runtime_options = {})
     super
   end
