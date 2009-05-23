@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   include AuthenticatedSystem
   include RoleRequirementSystem
-  include OpenIdAuthentication
+  # include OpenIdAuthentication
   
   helper :all # include all helpers, all the time
 
