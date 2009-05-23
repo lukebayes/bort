@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
   
   def open_id_authentication
-    complete_openid_authentication do |result, identity_url|
+    authenticate_with_open_id do |result, identity_url|
       if result.successful? && self.current_user = User.find_by_identity_url(identity_url)
         successful_login
       else

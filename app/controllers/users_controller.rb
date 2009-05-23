@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     if using_open_id?
-      begin_openid_authentication(params[:openid_url], :return_to => open_id_create_url, 
+      authenticate_with_open_id(params[:openid_url], :return_to => open_id_create_url, 
         :required => [:nickname, :email]) do |result, identity_url, registration|
         if result.successful?
           create_new_user(:identity_url => identity_url, :login => registration['nickname'], :email => registration['email'])
