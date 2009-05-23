@@ -1,5 +1,12 @@
 <%= title "Login", :h2 %>
 <% form_tag session_path do %>
+  <script language="javascript">
+    function setProviderOpenIdAndSubmit(url) {
+      var openid_input = $('#openid_url');
+      alert('use provider open id: ' + url);
+    }
+  </script>
+
     <fieldset>
         <legend>Your Details</legend>
         <ol>
@@ -19,10 +26,22 @@
     </fieldset>
     <fieldset>
         <legend>Login with OpenID</legend>
-        <ol>
+        <ol id="openid-options">
             <li>
                 <%= label_tag 'openid_url', 'OpenID URL' %>
                 <%= text_field_tag 'openid_url' %>
+            </li>
+            <li>
+                <p>Or Log in with a provider below:</p>
+
+                <p><input onclick="setProviderOpenId('http://yahoo.com'); return true;" name="commit" type="image" src="<%= image_url 'openid-yahoo-yellow.png' %>" value="Login With Yahoo!" alt="Login with Yahoo!" /></p>
+                
+                <p><input onclick="setProviderOpenId('http://twitter.com'); return true;" name="commit" type="image" src="<%= image_url 'openid-twitter-dark.png' %>" value="Login With Twitter" alt="Login with Twitter" /></p>
+                
+                <p><input onclick="setProviderOpenId('https://www.google.com/accounts/o8/ud'); return true;" name="commit" type="submit" value="Login With Google" alt="Login with Google" /></p>
+
+                <p><input onclick="setProviderOpenId('https://live.com'); return true;" name="commit" type="submit" value="Login With Microsoft" alt="Login with Microsoft" /></p>
+
             </li>
         </ol>
     </fieldset>
