@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
     logout_keeping_session!
     puts "sessions create with: (#{using_open_id?})"
     if using_open_id?
+      puts "ifer"
       open_id_authentication
     else
+      puts "elser"
       password_authentication
     end
   end

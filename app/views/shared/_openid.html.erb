@@ -2,19 +2,19 @@
     <legend>Using Provider</legend>
     <ul id="openid-providers">
       <li>
-        facebook
-        <%= fb_login_button('window.location = "/users/link_user_accounts";')%>
+        <%= openid_link_for(OPEN_ID_GOOGLE, "google", "#{label} With Google") %>
       </li>
       <li>
-        <%= openid_link_for(OPEN_ID_GOOGLE, 'google', "#{label} With Google") %>
+        <%= openid_link_for(OPEN_ID_YAHOO, "yahoo", "#{label} With Yahoo!") %>
       </li>
       <li>
-        <%= openid_link_for(OPEN_ID_YAHOO, 'yahoo', "#{label} With Yahoo!") %>
+        <%= openid_link_for(OPEN_ID_MY_OPEN_ID, "myopenid", "#{label} With My Open ID") %>
       </li>
       <li>
-        <%= openid_link_for(OPEN_ID_MY_OPEN_ID, 'myopenid', "#{label} With My Open ID") %>
       </li>
 <!--
+        facebook
+        <%= fb_login_button('window.location = "/users/link_user_accounts";')%>
       <li>
         <%= openid_link_for(OPEN_ID_TWITTER, 'twitter', "#{label} With Twitter") %>
       </li>
@@ -42,29 +42,16 @@
 -->
   </ul>
 </fieldset>
+
 <fieldset>
   <legend>Using OpenID</legend>
   <ul id="openid-options">
     <li>
       <%= label_tag 'openid_url', 'OpenID URL:' %>
-      <%= text_field_tag :openid_url %>
+      <%= text_field_tag :openid_url, params[:openid_url] || params['openid.identity'] %>
     </li>
     <li class="buttons">
         <%= submit_tag 'Create Account' %>
     </li>
     <li>
 </fieldset>
-
-<!--
-  Fieldset from User.new.html.erb:
-  
-    <fieldset>
-        <legend>Signup with OpenID</legend>
-        <ol>
-            <li>
-                <label for="openid_url">OpenID URL</label>
-                <%= text_field_tag :openid_url, params[:openid_url] || params['openid.identity'] %>
-            </li>
-        </ol>
-    </fieldset>
--->

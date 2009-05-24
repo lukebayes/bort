@@ -109,6 +109,7 @@ div.flash {
     width: 26.2em;
     border: 5px #ccc solid;
     padding: .5em;
+    margin-bottom: .6em;
 }
 
 div#flash-notice {
