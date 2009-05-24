@@ -1,7 +1,7 @@
 /*
 
 red: #B30001
-eggshell: #e3e1b8
+eggshell: #e3e1db
 white: #e3e1db
 slate: #2d3034
 light blue: #8fc0bb
@@ -14,18 +14,15 @@ taupe: #9a8e72
 
 html {
     font-size:62.5%;  /* set 1em to 10px */
+    background-color: #e3e1db;
 }
 
 body {
     font: 1.6em Verdana, Arial, Helvetica, sans-serif;
     text-align: center;
-
-    background-color: #e3e1db;
+    color: #333333;
     margin: 0;
     padding: 0;
-    text-align: center;
-    color: #333333;
-    float: left;
     width: 100%;
     height: 100%;
 }
@@ -45,12 +42,14 @@ body {
     text-align: left;
 }
 
-#footer {
+div#footer {
+    font-size: 80%;
     text-align: center;
+    background-color: #e3e1db;
+    padding: 0px;
 }
 
 #footer > ul {
-    list-style-type: none;
     display: inline;
     margin: 0px auto;
 }
@@ -69,6 +68,7 @@ form ul, form li {
 
 form li {
     text-align: right;
+    margin-top: .3em;
 }
 
 form li.checkbox label, form li.checkbox input {
@@ -77,6 +77,7 @@ form li.checkbox label, form li.checkbox input {
 
 form li.buttons {
     margin-top: 1.5em;
+    font-size: 95%;
 }
 
 fieldset {

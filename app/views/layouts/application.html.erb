@@ -15,14 +15,14 @@
     <body>
         <div id="body-content">
             <div id="header">
-                <ul>
+                <span>
                     <% if logged_in? %>
-                    <li><%= link_to 'Sign Out', logout_path %></li>
+                    <%= link_to 'Sign Out', logout_path %>
                     <% else %>
-                    <li><%= link_to 'Sign In', login_path %></li>
-                    <li><%= link_to 'Create Account', signup_path %></li>
+                    <%= link_to 'Sign in', login_path %> or 
+                    <%= link_to 'Create an account', signup_path %>
                     <% end %>
-                </ul>
+                </span>
             </div>
             <div id="main">
                 <%= flash_messages %>

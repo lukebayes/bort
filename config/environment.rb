@@ -82,3 +82,5 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   config.active_record.observers = :user_observer
 end
+
+ActionView::Helpers::InstanceTag::DEFAULT_FIELD_OPTIONS = { :size => 20 }
