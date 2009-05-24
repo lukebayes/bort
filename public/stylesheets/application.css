@@ -181,3 +181,7 @@ div.fieldWithErrors textarea
 #openid-options a {
     cursor: pointer;
 }
+
+.smaller {
+    font-size: 90%;
+}

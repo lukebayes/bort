@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SessionsController do
   fixtures        :users
-  before do 
+  before do
     @user  = mock_user
-    @login_params = { :login => 'quentin', :password => 'test' }
+    @login_params = { :login => 'quentin@example.com', :password => 'test' }
     User.stub!(:authenticate).with(@login_params[:login], @login_params[:password]).and_return(@user)
   end
   def do_create
@@ -72,7 +72,7 @@ describe SessionsController do
       login_as :quentin
     end
     it 'logs out keeping session'   do controller.should_receive(:logout_keeping_session!); do_create end
-    it 'flashes an error'           do do_create; flash[:error].should =~ /Couldn't log you in as 'quentin'/ end
+    it 'flashes an error'           do do_create; flash[:error].should =~ /Couldn't log you in as/ end
     it 'renders the log in page'    do do_create; response.should render_template('new')  end
     it "doesn't log me in"          do do_create; controller.send(:logged_in?).should == false end
     it "doesn't send password back" do 
@@ -132,7 +132,7 @@ describe SessionsController do
       session_path().should == "/session"
     end
     it "should route new_session_path() correctly" do
-      new_session_path().should == "/session/new"
+      login_path().should == "/login"
     end
   end
   
