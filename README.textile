@@ -2,22 +2,25 @@
 
 h1. Bort
 
-Bort is a base Rails 2.2 application that makes creating new projects easier and faster. Bort is developed and maintained by "Fudge Studios":http://www.fudgestudios.com, "Jim Neath":http://jimneath.org and "Matt Hall":http://matthall.wordpress.com
+Bort is a base Rails 2.3 application that makes creating new projects easier and faster. Bort is developed and maintained by "Fudge Studios":http://www.fudgestudios.com, "Jim Neath":http://jimneath.org and "Matt Hall":http://matthall.wordpress.com
 
 If you have any suggestions for improvements then feel free to leave a request on "User Voice":http://bort.uservoice.com
 
 h2. Install
 
 * Download and unzip Bort
-* Edit the database.yml and the settings.yml files
-* Changed the default password in the bort migration
+* Edit the <code>database.yml</code> and the <code>settings.yml</code> files
+* Change the default password in the bort migration
 * Edit the REST_AUTH_SITE_KEY in each of the environment files
-* Rake db:migrate
+* <code>rake db:create</code>
+* <code>rake db:migrate</code>
 * Have a brew and celebrate
 
 h2. Plugins Installed
 
 Bort comes with a few commonly used plugins installed and already setup.
+
+For the rest, run <code>sudo rake gems:install</code>
 
 h3. RESTful Authentication
 
