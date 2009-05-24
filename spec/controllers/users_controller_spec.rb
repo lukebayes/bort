@@ -9,19 +9,19 @@ describe UsersController do
       response.should be_redirect
     end.should change(User, :count).by(1)
   end
-
   
   it 'signs up user in pending state' do
     create_user
     assigns(:user).reload
     assigns(:user).should be_pending
   end
-
+  
   it 'signs up user with activation code' do
     create_user
     assigns(:user).reload
     assigns(:user).activation_code.should_not be_nil
   end
+  
   it 'requires login on signup' do
     lambda do
       create_user(:login => nil)

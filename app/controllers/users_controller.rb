@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         if result.successful?
           create_new_user(:identity_url => identity_url, :login => registration['nickname'], :email => registration['email'])
         else
+          @user = User.new
           failed_creation(result.message || "Sorry, something went wrong")
         end
       end
@@ -66,7 +67,7 @@ class UsersController < ApplicationController
   
   def failed_creation(message = 'Sorry, there was an error creating your account')
     flash[:error] = message
-    redirect_to :controller => 'users', :action => :new
-    # render :controller => 'users', :action => :new
+    # redirect_to :controller => 'users', :action => :new
+    render :controller => 'users', :action => :new
   end
 end
