@@ -17,28 +17,7 @@
             </li>
         </ol>
     </fieldset>
-    <fieldset>
-        <legend>Login with OpenID</legend>
-        <ol id="openid-options">
-            <li>
-                <%= label_tag 'openid_url', 'OpenID URL' %>
-                <%= text_field_tag 'openid_url' %>
-            </li>
-            <li>
-                <p>Or Log in with a provider below:</p>
-
-                <p><input onClick="return $('#openid_url').val('http://yahoo.com');" name="commit" type="image" src="<%= image_url 'openid-yahoo-yellow.png' %>" value="Login With Yahoo!" alt="Login with Yahoo!" /></p>
-
-                <p><input onClick="return $('#openid_url').val('https://www.google.com/accounts/o8/ud');" name="commit" type="submit" value="Login With Google" alt="Login with Google" /></p>
-
-<!--                
-                <p><input onClick="return setProviderOpenId('http://twitter.com');" name="commit" type="image" src="<%= image_url 'openid-twitter-dark.png' %>" value="Login With Twitter" alt="Login with Twitter" /></p>
-                
-                <p><input onClick="return setProviderOpenId('https://live.com');" name="commit" type="submit" value="Login With Microsoft" alt="Login with Microsoft" /></p>
--->
-            </li>
-        </ol>
-    </fieldset>
+    <%= render :partial => 'shared/openid', :locals => {:label => 'Login'} %>
     <div class="buttons">
         <%= submit_tag 'Login' %>
         <%= link_to 'Forgotten Password', forgot_password_path %>

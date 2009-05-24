@@ -7,6 +7,10 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 
+# Set up globals:
+OPEN_ID_GOOGLE = "http://www.google.com/accounts/o8/ud"
+OPEN_ID_YAHOO = "http://yahoo.com"
+
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
