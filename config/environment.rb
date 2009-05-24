@@ -10,16 +10,16 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 SITE_NAME = "Bort"
 
 # Set up globals:
-OPEN_ID_AOL          = ""
-OPEN_ID_BLOGGER      = ""
-OPEN_ID_FLICKR       = ""
+OPEN_ID_AOL          = "http://aol.com"
+OPEN_ID_BLOGGER      = "http://blogger.com"
+OPEN_ID_FLICKR       = "http://flickr.com"
 OPEN_ID_GOOGLE       = "http://www.google.com/accounts/o8/id"
-OPEN_ID_LIVE_JOURNAL = ""
-OPEN_ID_MICROSOFT    = "http://microsoft.com"
-OPEN_ID_MYSPACE      = ""
+OPEN_ID_LIVE_JOURNAL = "http://livejournal.com"
+OPEN_ID_MICROSOFT    = "http://live.com"
+OPEN_ID_MYSPACE      = "http://myspace.com"
 OPEN_ID_MY_OPEN_ID   = "http://myopenid.com"
 OPEN_ID_TWITTER      = "http://twitter.com"
-OPEN_ID_WORDPRESS    = ""
+OPEN_ID_WORDPRESS    = "http://wordpress.com"
 OPEN_ID_YAHOO        = "http://yahoo.com"
 
 # Bootstrap the Rails environment, frameworks, and default configuration
