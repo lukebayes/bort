@@ -24,9 +24,16 @@
                     <% end %>
                 </ul>
             </div>
-            <div id="content">
+            <div id="main">
                 <%= flash_messages %>
                 <%= yield :layout %>
+            </div>
+            <div id="footer">
+              <ul>
+                <li><%= link_to 'about' %></li>
+                <li><%= link_to 'contact' %></li>
+                <li><%= link_to 'privacy' %></li>
+              </ul>
             </div>
         </div>
     </body>

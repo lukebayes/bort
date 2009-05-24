@@ -1,3 +1,16 @@
+/*
+
+red: #B30001
+eggshell: #e3e1b8
+white: #e3e1db
+slate: #2d3034
+light blue: #8fc0bb
+deep blue: #2d308f
+taupe: #9a8e72
+
+
+*/
+
 
 html {
     font-size:62.5%;  /* set 1em to 10px */
@@ -6,20 +19,51 @@ html {
 body {
     font: 1.6em Verdana, Arial, Helvetica, sans-serif;
     text-align: center;
-    background-color: 
+
+    background-color: #e3e1db;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333333;
+    float: left;
+    width: 100%;
+    height: 100%;
 }
 
-#body-content {
-    margin: 0px auto;
+#body-content > div {
+    margin: 1em auto;
     width: 780px;
+    background-color: #fff;
+    padding: 1em;
+}
+
+#body-content > #header {
+    text-align: right;
+}
+
+#body-content > #main {
     text-align: left;
+}
+
+#footer {
+    text-align: center;
+}
+
+#footer > ul {
+    list-style-type: none;
+    display: inline;
+    margin: 0px auto;
+}
+
+#footer > ul > li {
+    display: inline;
 }
 
 form {
     width: 28em;
 }
 
-form ul {
+form ul, form li {
     list-style-type: none;
 }
 
@@ -33,6 +77,31 @@ form li.checkbox label, form li.checkbox input {
 
 form li.buttons {
     margin-top: 1.5em;
+}
+
+fieldset {
+    border: .3em #ccc solid;
+}
+
+legend {
+    margin: 0px 1em;
+    padding: 0px .5em;
+}
+
+h2 {
+    color: #2d3034;
+}
+
+a {
+    color: #2d308f;
+}
+
+a:hover {
+    color: #B30001;
+}
+
+a:visited {
+    color: #65308f;
 }
 
 /* === FLASH MESSAGES === */

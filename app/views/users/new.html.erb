@@ -6,20 +6,20 @@
         <legend>Using <%= SITE_NAME %></legend>
         <ul>
             <li>
-                <%= f.label :login, 'Username:' %>
-                <%= f.text_field :login %>
+                <%= f.label 'login', 'Username:' %>
+                <%= f.text_field 'login' %>
             </li>
             <li>
-                <%= f.label :email, 'Email:' %>
-                <%= f.text_field :email %>
+                <%= f.label 'email', 'Email:' %>
+                <%= f.text_field 'email' %>
             </li>
             <li>
-                <%= f.label :password, 'Password:' %>
-                <%= f.password_field :password %>
+                <%= f.label 'password', 'Password:' %>
+                <%= f.password_field 'password' %>
             </li>
             <li>
-                <%= f.label :password_confirmation, 'Confirm Password:' %>
-                <%= f.password_field :password_confirmation %>
+                <%= f.label 'password_confirmation', 'Confirm Password:' %>
+                <%= f.password_field 'password_confirmation' %>
             </li>
             <li class="checkbox">
                 <%= label_tag 'remember_me', 'Remember me' %>

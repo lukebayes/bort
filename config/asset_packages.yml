@@ -5,4 +5,6 @@ javascripts:
   - application
 stylesheets: 
 - base:
+  - yui-reset-min
+  - yui-base-min
   - application
