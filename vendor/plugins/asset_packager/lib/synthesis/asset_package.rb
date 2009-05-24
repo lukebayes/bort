@@ -157,10 +157,10 @@ module Synthesis
       def compress_js(source)
         jsmin_path = "#{RAILS_ROOT}/vendor/plugins/asset_packager/lib"
         tmp_path = "#{RAILS_ROOT}/tmp/#{@target}_packaged"
-      
+        
         # write out to a temp file
         File.open("#{tmp_path}_uncompressed.js", "w") {|f| f.write(source) }
-      
+        
         # compress file with JSMin library
         `ruby #{jsmin_path}/jsmin.rb <#{tmp_path}_uncompressed.js >#{tmp_path}_compressed.js \n`
 
