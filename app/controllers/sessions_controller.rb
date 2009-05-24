@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     logout_keeping_session!
+    puts "sessions create with: (#{using_open_id?})"
     if using_open_id?
       open_id_authentication
     else

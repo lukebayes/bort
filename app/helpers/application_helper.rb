@@ -22,7 +22,7 @@ module ApplicationHelper
   end
   
   def openid_link_for(provider_url, name, label)
-    "<input onClick=\"return $('#openid_url').val('#{provider_url}');\" name='commit' type='image' src='images/openid/#{name.downcase}.png' value='#{label}' alt='#{label}' />"
+    "<input onClick=\"return $('#openid_url').val('#{provider_url}');\" name='commit' type='image' src='/images/openid/#{name.downcase}.png' value='#{label}' alt='#{label}' />"
   end
   
 end
