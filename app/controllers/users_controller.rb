@@ -28,8 +28,9 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to login_path
+      flash[:notice] = "Signup complete!"
+      self.current_user = user
+      redirect_back_or_default(root_path)
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default(root_path)
@@ -59,10 +60,13 @@ class UsersController < ApplicationController
   end
   
   def successful_creation(user)
-    redirect_back_or_default(root_path)
     flash[:notice] = "Thanks for signing up!"
-    flash[:notice] << " We're sending you an email with your activation code." if @user.not_using_openid?
-    flash[:notice] << " You can now login with your OpenID." unless @user.not_using_openid?
+    if @user.not_using_openid?
+      flash[:notice] << " We're sending you an email with your activation code."
+    else
+      self.current_user = user unless user.not_using_openid?
+    end
+    redirect_back_or_default(root_path)
   end
   
   def failed_creation(message = 'Sorry, there was an error creating your account')

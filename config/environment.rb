@@ -83,4 +83,4 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer
 end
 
-ActionView::Helpers::InstanceTag::DEFAULT_FIELD_OPTIONS = { :size => 20 }
+ActionView::Helpers::InstanceTag::DEFAULT_FIELD_OPTIONS = { :size => 18 }
