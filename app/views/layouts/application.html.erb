@@ -16,6 +16,9 @@
         <div id="body-content">
             <div id="header">
                 <span>
+                    <%= link_to 'Main', root_path %>
+                </span>
+                <span>
                     <% if logged_in? %>
                     <%= link_to 'Sign out', logout_path %>
                     <% else %>

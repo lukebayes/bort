@@ -126,6 +126,9 @@ div#flash-error {
 
 /* === ERROR MESSAGES === */
 div#errorExplanation {
+    border: 5px #ff0000 solid;
+    padding: .5em;
+    margin-bottom: .6em;
 }
 
 div#errorExplanation h2 {
