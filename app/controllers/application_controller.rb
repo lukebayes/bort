@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   include AuthenticatedSystem
   include RoleRequirementSystem
-  # include OpenIdAuthentication
   
   helper :all # include all helpers, all the time
 
@@ -11,6 +10,9 @@ class ApplicationController < ActionController::Base
 
   filter_parameter_logging :password, :password_confirmation
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
+  # before_filter :set_facebook_session
+  # helper_method :facebook_session
   
   protected
   
