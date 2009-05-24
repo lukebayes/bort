@@ -1,0 +1,90 @@
+
+html {
+    font-size:62.5%;  /* set 1em to 10px */
+}
+
+body {
+    font: 1.6em Verdana, Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#body-content {
+    margin: 0px auto;
+    width: 780px;
+    text-align: left;
+}
+
+form {
+    width: 28em;
+}
+
+form ul {
+    list-style-type: none;
+}
+
+form li {
+    text-align: right;
+}
+
+form li.checkbox label, form li.checkbox input {
+    cursor: pointer;
+}
+
+form li.buttons {
+    margin-top: 1.5em;
+}
+
+/* === FLASH MESSAGES === */
+div.flash {
+    width: 26.2em;
+    border: 5px #ccc solid;
+    padding: .5em;
+}
+
+div#flash-notice {
+    border-color: #00ff00;
+}
+
+div#flash-warning {
+    border-color: #ffcc00;
+}
+
+div#flash-error {
+    border-color:#ff0000;
+}
+
+/* === ERROR MESSAGES === */
+div#errorExplanation {
+}
+
+div#errorExplanation h2 {
+    
+}
+
+div#errorExplanation p {
+    
+}
+
+div#errorExplanation ul {
+    
+}
+
+div#errorExplanation ul li {
+    
+}
+
+/* === FORMS === */
+div.fieldWithErrors {
+}
+
+div.fieldWithErrors label {
+}
+
+div.fieldWithErrors input, div.fieldWithErrors select, 
+div.fieldWithErrors textarea
+{
+}
+
+#openid-options a {
+    cursor: pointer;
+}

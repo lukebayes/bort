@@ -1,24 +1,33 @@
 <fieldset>
-  <legend><%= label %> with OpenID</legend>
-  <ol id="openid-options">
-    <li>
-      <%= label_tag 'openid_url', 'OpenID URL' %>
-      <%= text_field_tag 'openid_url' %>
-    </li>
-    <li>
-      <p>Or Log in with a provider below:</p>
-
-      <p><input onClick="return $('#openid_url').val('<%= OPEN_ID_YAHOO %>');" name="commit" type="image" src="<%= image_url 'openid-yahoo-yellow.png' %>" value="<%= label %> With Yahoo!" alt="<%= label %> with Yahoo!" /></p>
-
-      <p><input onClick="return $('#openid_url').val('<%= OPEN_ID_GOOGLE %>');" name="commit" type="submit" value="<%= label %> With Google" alt="<%= label %> with Google" /></p>
-
-      <!--                
-        <p><input onClick="return setProviderOpenId('http://twitter.com');" name="commit" type="image" src="<%= image_url 'openid-twitter-dark.png' %>" value="<%= label %> With Twitter" alt="<%= label %> with Twitter" /></p>
-
-        <p><input onClick="return setProviderOpenId('https://live.com');" name="commit" type="submit" value="<%= label %> With Microsoft" alt="<%= label %> with Microsoft" /></p>
+    <legend>Using Provider</legend>
+    <ul>
+      <li>
+        <input onClick="return $('#openid_url').val('<%= OPEN_ID_YAHOO %>');" name="commit" type="image" src="<%= image_url 'openid-yahoo-yellow.png' %>" value="<%= label %> With Yahoo!" alt="<%= label %> with Yahoo!" />      </li>
+      <li>
+        <input onClick="return $('#openid_url').val('<%= OPEN_ID_GOOGLE %>');" name="commit" type="submit" value="<%= label %> With Google" alt="<%= label %> with Google" />
+      </li>
+      <!--
+      <li>
+        <input onClick="return setProviderOpenId('http://twitter.com');" name="commit" type="image" src="<%= image_url 'openid-twitter-dark.png' %>" value="<%= label %> With Twitter" alt="<%= label %> with Twitter" />
+      </li>
+      <li>
+        <input onClick="return setProviderOpenId('https://live.com');" name="commit" type="submit" value="<%= label %> With Microsoft" alt="<%= label %> with Microsoft" />
+      </li>
       -->
     </li>
-  </ol>
+  </ul>
+</fieldset>
+<fieldset>
+  <legend>Using OpenID</legend>
+  <ul id="openid-options">
+    <li>
+      <%= label_tag 'openid_url', 'OpenID URL:' %>
+      <%= text_field_tag :openid_url %>
+    </li>
+    <li class="buttons">
+        <%= submit_tag 'Create Account' %>
+    </li>
+    <li>
 </fieldset>
 
 <!--

@@ -1,25 +1,25 @@
-<%= title "Login", :h2 %>
+<%= title "Sign In", :h2 %>
 <% form_tag session_path do %>
     <fieldset>
-        <legend>Your Details</legend>
-        <ol>
+        <legend>Using <%= SITE_NAME %></legend>
+        <ul>
             <li>
-                <%= label_tag 'login', 'Username' %>
+                <%= label_tag 'login', 'Username:' %>
                 <%= text_field_tag 'login', @login %>
             </li>
             <li>
-                <%= label_tag 'password' %>
+                <%= label_tag 'password', 'Password:' %>
                 <%= password_field_tag 'password', nil %>
             </li>
-            <li>
+            <li class="checkbox">
                 <%= label_tag 'remember_me', 'Remember me' %>
                 <%= check_box_tag 'remember_me', '1', @remember_me %>
             </li>
-        </ol>
+            <li class="buttons">
+              <%= link_to 'Forgotten Password', forgot_password_path %>
+              <%= submit_tag 'Submit' %>
+            </li>
+        </ul>
     </fieldset>
-    <%= render :partial => 'shared/openid', :locals => {:label => 'Login'} %>
-    <div class="buttons">
-        <%= submit_tag 'Login' %>
-        <%= link_to 'Forgotten Password', forgot_password_path %>
-    </div>
+    <%= render :partial => 'shared/openid', :locals => {:label => 'Sign in'} %>
 <% end -%>

@@ -5,4 +5,4 @@ javascripts:
   - application
 stylesheets: 
 - base:
-  - base
+  - application

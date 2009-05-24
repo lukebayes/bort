@@ -9,18 +9,18 @@
 		<meta name="robots" content="all" />	
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
-		<%= stylesheet_link_tag 'base' %>
+		<%= stylesheet_link_merged :base %>
 		<%= javascript_include_merged :base %>
 	</head>
 	<body>
-		<div id="container">
+		<div id="body-content">
 			<div id="header">
 				<ul>
 					<% if logged_in? %>
-					<li><%= link_to 'Logout', logout_path %></li>
+					<li><%= link_to 'Sign Out', logout_path %></li>
 					<% else %>
-					<li><%= link_to 'Login', login_path %></li>
-					<li><%= link_to 'Signup', signup_path %></li>
+					<li><%= link_to 'Sign In', login_path %></li>
+					<li><%= link_to 'Create Account', signup_path %></li>
 					<% end %>
 				</ul>
 			</div>

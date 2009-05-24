@@ -66,6 +66,7 @@ class UsersController < ApplicationController
   
   def failed_creation(message = 'Sorry, there was an error creating your account')
     flash[:error] = message
-    render :action => :new
+    redirect_to :controller => 'users', :action => :new
+    # render :controller => 'users', :action => :new
   end
 end
