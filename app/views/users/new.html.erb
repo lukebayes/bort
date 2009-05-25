@@ -1,30 +1,32 @@
 <% @user.password = @user.password_confirmation = nil %>
-<%= title "Create Account Using:", :h2 %>
+<%= title "Create Account" %>
+<p class="sub-head"><strong>Create an account</strong> using one of the following:</p>
+
 <% form_for @user do |f| %>
     <%= f.error_messages %>
     <fieldset>
         <legend><%= SITE_NAME %></legend>
         <ul>
             <li>
-                <%= f.label 'login', 'Username:' %>
+                <%= f.label 'login', 'Username' %>
                 <%= f.text_field 'login' %>
             </li>
             <li>
-                <%= f.label 'email', 'Email:' %>
+                <%= f.label 'email', 'Email' %>
                 <%= f.text_field 'email' %>
             </li>
             <li>
-                <%= f.label 'password', 'Password:' %>
+                <%= f.label 'password', 'Password' %>
                 <%= f.password_field 'password' %>
             </li>
             <li>
-                <%= f.label 'password_confirmation', 'Confirm Password:' %>
+                <%= f.label 'password_confirmation', 'Confirm Password' %>
                 <%= f.password_field 'password_confirmation' %>
             </li>
             <li class="buttons">
-                <%= submit_tag 'Create Account' %>
+                <%= submit_tag 'Create' %>
             </li>
         </ul>
     </fieldset>
-    <%= render :partial => 'shared/openid', :locals => {:label => 'Create account'} %>
+    <%= render :partial => 'shared/openid', :locals => {:label => 'Create'} %>
 <% end %>
