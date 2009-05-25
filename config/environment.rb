@@ -12,6 +12,7 @@ SITE_NAME = "Bort"
 # Set up globals:
 OPEN_ID_AOL          = "http://aol.com"
 OPEN_ID_BLOGGER      = "http://blogger.com"
+OPEN_ID_FACEBOOK     = "https://facebook.com"
 OPEN_ID_FLICKR       = "http://flickr.com"
 OPEN_ID_GOOGLE       = "http://www.google.com/accounts/o8/id"
 OPEN_ID_LIVE_JOURNAL = "http://livejournal.com"

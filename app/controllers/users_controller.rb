@@ -21,6 +21,7 @@ class UsersController < ApplicationController
           # Google email response:
           email = params['openid.ext1.value.email']
           email ||= params['openid.ext1.value.ext0']
+          email ||= params['openid.sreg.email']
           
           if(email.nil?)
             flash[:error] = "We were unable to determine a valid email address from that provider, please try a different one"
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
           end
 
           login = registration['nickname']
-          name = email.split('@').first
+          name = params['openid.sreg.fullname'] || email.split('@').first
 
           puts "----------------"
           puts "FINAL VALUE: #{email}"
