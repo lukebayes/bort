@@ -63,7 +63,7 @@ module AuthenticatedSystem
     # simply close itself.
     def access_denied
       store_location
-      redirect_to :controller => '/account', :action => 'login'
+      redirect_to login_path
       false
     end  
     

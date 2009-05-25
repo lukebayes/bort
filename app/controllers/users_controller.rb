@@ -8,11 +8,36 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     if using_open_id?
-      authenticate_with_open_id(params[:openid_url], :return_to => open_id_create_url, 
-        :required => [:nickname, :email]) do |result, identity_url, registration|
+      # Would like:
+      # First Name
+      # Last Name
+      # Nick Name
+      # Email
+      
+      required_fields = ['http://axschema.org/contact/email', 'email', 'nickname', 'fullname']
+      authenticate_with_open_id(params[:openid_url], :return_to => open_id_create_url, :required => required_fields) do |result, identity_url, registration|
         if result.successful?
-          puts "registration: #{registration}"
-          create_new_user(:identity_url => identity_url, :login => registration['nickname'], :email => registration['email'])
+          
+          # Google email response:
+          email = params['openid.ext1.value.email']
+          email ||= params['openid.ext1.value.ext0']
+          
+          if(email.nil?)
+            flash[:error] = "We were unable to determine a valid email address from that provider, please try a different one"
+            redirect_to signup_path
+            return
+          end
+
+          login = registration['nickname']
+          name = email.split('@').first
+
+          puts "----------------"
+          puts "FINAL VALUE: #{email}"
+          puts "login: #{login}"
+          puts "name: #{name}"
+          puts "----------------"
+
+          create_new_user(:identity_url => identity_url, :login => login, :email => email, :name => name)
         else
           @user = User.new
           failed_creation(result.message || "Sorry, something went wrong")

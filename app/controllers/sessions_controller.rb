@@ -22,8 +22,8 @@ class SessionsController < ApplicationController
   
   def open_id_authentication
     authenticate_with_open_id do |result, identity_url|
-      if result.successful? && self.current_user = User.find_by_identity_url(identity_url)
-        successful_login
+      if result.successful? && user = User.find_by_identity_url(identity_url)
+        successful_login user
       else
         flash[:error] = result.message || "Sorry no user with that identity URL exists"
         @remember_me = params[:remember_me]
@@ -37,8 +37,7 @@ class SessionsController < ApplicationController
   def password_authentication
     user = User.authenticate(params[:login], params[:password])
     if user
-      self.current_user = user
-      successful_login
+      successful_login user
     else
       note_failed_signin
       @login = params[:login]
@@ -47,7 +46,8 @@ class SessionsController < ApplicationController
     end
   end
   
-  def successful_login
+  def successful_login(user)
+    self.current_user = user
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     redirect_back_or_default(root_path)

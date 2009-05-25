@@ -14,6 +14,29 @@ class ApplicationController < ActionController::Base
   # before_filter :set_facebook_session
   # helper_method :facebook_session
   
+  def current_user
+    return nil if session[:user_id].nil?
+    @current_user ||= load_current_user
+  end
+  
+  def current_user=(user)
+    session[:user_id] = user.id unless user.nil?
+    @current_user = user
+  end
+  
+  def load_current_user
+    User.find_by_id(session[:user_id])
+  end
+  
+  def login_required
+    if session[:user_id]
+      return current_user
+    end
+    
+    redirect_to login_path
+    return false
+  end
+  
   protected
   
   def access_denied

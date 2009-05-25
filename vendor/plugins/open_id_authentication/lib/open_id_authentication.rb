@@ -204,7 +204,7 @@ module OpenIdAuthentication
       return request_response.endpoint.server_url.match("www.google.com/accounts/o8/ud")
     end
     
-    def add_ax_fields( open_id_request, fields )
+    def add_ax_fields(open_id_request, fields)
       ax_request = OpenID::AX::FetchRequest.new
       
       # look through the :required and :optional fields for URIs (AX identifiers)

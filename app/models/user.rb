@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
   
   def label
-    login || email
+    name || email
   end
 
   protected
