@@ -27,8 +27,11 @@ body {
 #body-content > div {
     margin: 1em auto;
     width: 780px;
-    background-color: #fff;
     padding: 1em;
+}
+
+#body-content > #main {
+    background-color: #fff;
 }
 
 #body-content > #header {

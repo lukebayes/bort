@@ -1,6 +1,7 @@
 <%= title "Sign In" %>
 <p class="sub-head"><strong>Sign in</strong> using one of the following:</p>
 <% form_tag session_path do %>
+    <%= render :partial => 'shared/openid', :locals => {:label => 'Sign in'} %>
     <fieldset>
         <legend><%= SITE_NAME %></legend>
         <ul>
@@ -22,5 +23,4 @@
             </li>
         </ul>
     </fieldset>
-    <%= render :partial => 'shared/openid', :locals => {:label => 'Sign in'} %>
 <% end -%>

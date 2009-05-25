@@ -4,6 +4,7 @@
 
 <% form_for @user do |f| %>
     <%= f.error_messages %>
+    <%= render :partial => 'shared/openid', :locals => {:label => 'Create'} %>
     <fieldset>
         <legend><%= SITE_NAME %></legend>
         <ul>
@@ -28,5 +29,4 @@
             </li>
         </ul>
     </fieldset>
-    <%= render :partial => 'shared/openid', :locals => {:label => 'Create'} %>
 <% end %>
