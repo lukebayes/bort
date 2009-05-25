@@ -16,6 +16,8 @@
       <li>
         <%= openid_link_for(OPEN_ID_MY_OPEN_ID, "myopenid", "#{label} With My Open ID") %>
       </li>
+      <li>
+      </li>
       <!--
       <li>
         **<%= openid_link_for(OPEN_ID_TWITTER, 'twitter', "#{label} With Twitter") %>
@@ -36,18 +38,17 @@
         **<%= openid_link_for(OPEN_ID_AOL, 'aol', "#{label} With America Online") %>
       </li>
       -->
-  </ul>
+    </ul>
+    <a id="toggle-any-open-id" onclick="toggleOpenIdEntry();">(+) Show OpenID URL entry</a>
+    <div id="any-open-id" style="display:none;">
+      <hr />
+      <div>
+        <%= label_tag 'openid_url', 'OpenID URL:' %>
+        <%= text_field_tag :openid_url, params[:openid_url] || params['openid.identity'] %>
+      </div>
+      <div>
+        <%= submit_tag "#{label} with OpenID" %>
+      </div>
+    </div>
 </fieldset>
 
-<fieldset>
-  <legend>OpenID</legend>
-  <ul id="openid-options">
-    <li>
-      <%= label_tag 'openid_url', 'OpenID URL:' %>
-      <%= text_field_tag :openid_url, params[:openid_url] || params['openid.identity'] %>
-    </li>
-    <li class="buttons">
-        <%= submit_tag 'Create Account' %>
-    </li>
-    <li>
-</fieldset>

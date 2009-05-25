@@ -1,23 +1,24 @@
-<%= title "Sign In Using:", :h2 %>
+<%= title "Sign In" %>
+<p class="sub-head"><strong>Sign in</strong> using one of the following:</p>
 <% form_tag session_path do %>
     <fieldset>
         <legend><%= SITE_NAME %></legend>
         <ul>
             <li>
-                <%= label_tag 'login', 'Username <em class="smaller">(or Email)</em>:' %>
+                <%= label_tag 'login', 'Username or email' %>
                 <%= text_field_tag 'login', @login %>
             </li>
             <li>
-                <%= label_tag 'password', 'Password:' %>
-                <%= password_field_tag 'password', nil %>
+                <%= label_tag 'password', 'Password' %>
+                <%= password_field_tag 'password' %>
             </li>
             <li class="checkbox">
                 <%= label_tag 'remember_me', 'Remember me' %>
                 <%= check_box_tag 'remember_me', '1', @remember_me %>
             </li>
             <li class="buttons">
-              <%= link_to 'Forgot Password?', forgot_password_path %>
-              <%= submit_tag 'Submit' %>
+                <%= link_to 'Password reminder', forgot_password_path, :class => 'smaller password-reminder', :tabindex => 100 %>
+              <%= submit_tag 'Sign In', :onclick => 'clearOpenId();' %>
             </li>
         </ul>
     </fieldset>

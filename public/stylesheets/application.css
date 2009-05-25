@@ -14,7 +14,7 @@ html {
 }
 
 body {
-    font: 1.6em Verdana, Arial, Helvetica, sans-serif;
+    font: 1.6em Verdana, Arial, sans-serif;
     text-align: center;
     color: #333333;
     margin: 0;
@@ -39,6 +39,10 @@ body {
     text-align: left;
 }
 
+#header > .left {
+    float: left;
+}
+
 div#footer {
     font-size: 80%;
     text-align: center;
@@ -56,6 +60,7 @@ div#footer {
 }
 
 form {
+    margin-top: 1em;
     width: 28em;
 }
 
@@ -90,6 +95,10 @@ h2 {
     color: #2d3034;
     margin-top: 0px;
     margin-bottom: 0.5em;
+}
+
+p.sub-head {
+    font-size: 110%;
 }
 
 a {
@@ -168,6 +177,33 @@ div.fieldWithErrors textarea
     height: 50px;
 }
 
+#toggle-any-open-id {
+    font-size: 85%;
+    float: right;
+    margin: 1em 1em;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#any-open-id {
+    width: 100%;
+    float: left;
+    text-align: right;
+    padding-bottom: 1em;
+}
+
+#any-open-id > div {
+    padding: 1em 1em 0em 0em;
+}
+
+#any-open-id > hr {
+    margin: 0px;
+    height: 5px;
+    color: #ccc;
+    background-color: #ccc;
+    border: 0px solid #ccc;
+}
+
 #openid-providers input {
     background-image: url('/images/openid/button.png');
     width: 150px;
@@ -184,4 +220,8 @@ div.fieldWithErrors textarea
 
 .smaller {
     font-size: 90%;
+}
+
+.password-reminder {
+    margin-right: 0.7em;
 }
