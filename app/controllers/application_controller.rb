@@ -30,10 +30,15 @@ class ApplicationController < ActionController::Base
   
   def login_required
     if session[:user_id]
-      return current_user
+      return current_user unless current_user.nil? || current_user.passive?
     end
     
-    redirect_to login_path
+    if(!current_user.nil? && current_user.using_openid? && current_user.passive?)
+      flash[:warning] = "Please finish activating your account"
+      redirect_to edit_user_path(current_user)
+    else
+      redirect_to login_path
+    end
     return false
   end
   

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       authenticate_with_open_id(params[:openid_url], :return_to => open_id_create_url, :required => required_fields) do |result, identity_url, registration|
         if result.successful?
           options = get_options_from_openid_params(params, identity_url)
-          create_or_update_openid_user(options)
+          create_new_openid_user(options)
         else
           @user = User.new
           failed_creation(result.message || "Sorry, something went wrong with the OpenID services")
@@ -32,14 +32,11 @@ class UsersController < ApplicationController
   
   # TODO: only admins or same users should be able to update:
   def update
-    user = User.find_by_id(params[:id])
-    puts "---------------"
-    puts "UPDATE CALLED WITH: #{user}"
-    if user.update_attributes(params[:user])
-      puts "after update: #{user}"
-      if(user.save)
-        if(!user.active?)
-          create_or_update_openid_user(params, user)
+    @user = User.find_by_id(params[:id])
+    if @user.update_attributes(params[:user])
+      if(@user.save)
+        if(!@user.active?)
+          update_openid_user(@user, params)
           return
         else
           flash[:notice] = "Your account has been saved"
@@ -48,7 +45,8 @@ class UsersController < ApplicationController
         end
       end
     end
-    render :action => 'edit'
+    # flash[:error] = "There was a problem updating your account"
+    render :action => 'edit', :id => @user
   end
   
   def activate
@@ -71,21 +69,22 @@ class UsersController < ApplicationController
   
   protected
   
-  def create_or_update_openid_user(attributes, user=nil)
-    user ||= User.new
+  def create_new_openid_user(attributes)
+    user = User.new
     user.update_attributes(attributes)
-    if(user.valid?)
-      # This transitions the user from passive to active:
-      puts "inside valid user - about to register_openid!"
-      puts "user: #{user}"
-      user.register_openid!
-      puts "exception didn't throw"
-      return finish_creation(user)
+    user.save(false)
+    self.current_user = user
+    flash[:notice] = "You are now signed in, let's finish creating your account."
+    return redirect_to(:controller => 'users', :action => 'edit', :id => user)
+  end
+  
+  def update_openid_user(user, attributes)
+    user.update_attributes(attributes)
+    if(user.valid? && user.register_openid!)
+      finish_creation(user)
     else
-      user.save(false)
-      self.current_user = user
-      flash[:notice] = "You are now signed in, let's finish creating your account."
-      return redirect_to(:controller => 'users', :action => 'edit', :id => user)
+      flash[:error] = "There was a problem creating your account"
+      render :action => 'edit', :id => user
     end
   end
   
@@ -118,7 +117,7 @@ class UsersController < ApplicationController
   
   def failed_creation(message = 'Sorry, there was an error creating your account')
     flash[:error] = message
-    # redirect_to :controller => 'users', :action => :new
-    render :controller => 'users', :action => :new
+    @user = User.new
+    render :controller => 'users', :action => 'new'
   end
 end

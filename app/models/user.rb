@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     identity_url.blank?
   end
   
+  def using_openid?
+    return !not_using_openid?
+  end
+  
   # Overwrite password_required for open id
   def password_required?
     new_record? ? not_using_openid? && (crypted_password.blank? || !password.blank?) : !password.blank?

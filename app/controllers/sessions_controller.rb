@@ -23,10 +23,10 @@ class SessionsController < ApplicationController
   def open_id_authentication
     authenticate_with_open_id do |result, identity_url|
       if result.successful? && user = User.find_by_identity_url(identity_url)
+        @remember_me = params[:remember_me]
         successful_login user
       else
-        flash[:error] = result.message || "Sorry no user with that identity URL exists"
-        @remember_me = params[:remember_me]
+        flash[:error] = result.message || "Sorry we could not find a valid user account."
         render :action => :new
       end
     end
