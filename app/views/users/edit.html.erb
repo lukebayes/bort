@@ -1,0 +1,37 @@
+<% @user.password = @user.password_confirmation = nil %>
+<%= title "Create Account" %>
+<p class="sub-head"><strong>Update</strong> your account:</p>
+
+<% form_for @user do |f| %>
+    <%= f.error_messages %>
+    <fieldset>
+        <legend><%= SITE_NAME %></legend>
+        <ul>
+            <li>
+                <%= f.label 'login', 'Username' %>
+                <%= f.text_field 'login' %>
+            </li>
+            <li>
+                <%= f.label 'name', 'Full Name' %>
+                <%= f.text_field 'name' %>
+            </li>
+            <li>
+                <%= f.label 'email', 'Email' %>
+                <%= f.text_field 'email' %>
+            </li>
+            <% if @user.not_using_openid? -%>
+            <li>
+                <%= f.label 'password', 'Password' %>
+                <%= f.password_field 'password' %>
+            </li>
+            <li>
+                <%= f.label 'password_confirmation', 'Confirm Password' %>
+                <%= f.password_field 'password_confirmation' %>
+            </li>
+            <% end -%>
+            <li class="buttons">
+                <%= submit_tag 'Update' %>
+            </li>
+        </ul>
+    </fieldset>
+<% end %>

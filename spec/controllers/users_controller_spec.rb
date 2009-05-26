@@ -54,7 +54,6 @@ describe UsersController do
     end.should_not change(User, :count)
   end
   
-  
   it 'activates user' do
     User.authenticate('aaron', 'monkey').should be_nil
     get :activate, :activation_code => users(:aaron).activation_code
@@ -81,6 +80,20 @@ describe UsersController do
     flash[:notice].should     be_nil
     flash[:error ].should_not be_nil
   end
+
+  it "does not activate user without required fields" do
+    lambda do
+      post :create, :identity_url => OPEN_ID_YAHOO
+    end.should change(User, :count).by(1)
+  end
+  
+  it "should use existing identity_url if possible"
+  
+  it "should handle missing information after authentication"
+  
+  it "should not activate user until user is valid"
+  
+  it "should activate user after user is valid"
   
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',

@@ -137,5 +137,47 @@ describe UsersHelper do
       result.should have_tag("a.bar")
     end
   end
+  
+  describe "name_to_login" do
+    it "should ignore nil" do
+      name_to_login(nil).should be_nil
+    end
+    
+    it "should ignore empty string" do
+      name_to_login('').should be_nil
+    end
+    
+    it "should lowercase and remove spaces" do
+      name_to_login('Jim James Jones').should == "jimjamesjones"
+    end
+    
+    it "should accept a nearly perfect login" do
+      name_to_login('jimjamesjones').should == "jimjamesjones"
+    end
+  end
+  
+  describe "get_options_from_openid_params" do
+    before do
+      @email = 'foo@foo.com'
+      @identity_url = 'http://a.com'
+      @nickname = 'FooBar'
+    end
+
+    ['openid.ext1.value.email', 'openid.ext1.value.ext0', 'openid.sreg.email'].each do |param|
+      it "should find #{param} in params" do
+        result = get_options_from_openid_params({param => @email}, @identity_url)
+        result[:identity_url].should == @identity_url
+        result[:email].should == @email
+        result[:name].should == 'foo'
+        result[:login].should == 'foo'
+      end
+    end
+    
+    it "should accept nickname param" do
+      result = get_options_from_openid_params({:nickname => @nickname}, @identity_url)
+      result[:login].should == 'foobar'
+    end
+    
+  end
 
 end

@@ -21,6 +21,7 @@
                 <span>
                     <% if logged_in? %>
                     <strong>Welcome <%= current_user.label %></strong><br />
+                    <%= link_to 'Account', edit_user_path(current_user) %>&nbsp;&nbsp;
                     <%= link_to 'Sign out', logout_path %>
                     <% else %>
                     <%= link_to 'Sign in', login_path %> or 

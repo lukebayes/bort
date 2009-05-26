@@ -22,7 +22,7 @@ module Authorization
         end
         
         aasm_event :register_openid do
-          transitions :from => :passive, :to => :active, :guard => Proc.new {|u| !u.not_using_openid? }
+          transitions :from => :passive, :to => :active
         end
         
         aasm_event :activate do

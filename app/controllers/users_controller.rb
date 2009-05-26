@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => :create
+  include UsersHelper
+  
+  skip_before_filter :verify_authenticity_token, :only => [:create, :edit, :update]
   
   def new
     @user = User.new
@@ -8,45 +10,45 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     if using_open_id?
-      # Would like:
-      # First Name
-      # Last Name
-      # Nick Name
-      # Email
-      
       required_fields = ['http://axschema.org/contact/email', 'email', 'nickname', 'fullname']
       authenticate_with_open_id(params[:openid_url], :return_to => open_id_create_url, :required => required_fields) do |result, identity_url, registration|
         if result.successful?
-          
-          # Google email response:
-          email = params['openid.ext1.value.email']
-          email ||= params['openid.ext1.value.ext0']
-          email ||= params['openid.sreg.email']
-          
-          if(email.nil?)
-            flash[:error] = "We were unable to determine a valid email address from that provider, please try a different one"
-            redirect_to signup_path
-            return
-          end
-
-          login = registration['nickname']
-          name = params['openid.sreg.fullname'] || email.split('@').first
-
-          puts "----------------"
-          puts "FINAL VALUE: #{email}"
-          puts "login: #{login}"
-          puts "name: #{name}"
-          puts "----------------"
-
-          create_new_user(:identity_url => identity_url, :login => login, :email => email, :name => name)
+          options = get_options_from_openid_params(params, identity_url)
+          create_or_update_openid_user(options)
         else
           @user = User.new
-          failed_creation(result.message || "Sorry, something went wrong")
+          failed_creation(result.message || "Sorry, something went wrong with the OpenID services")
         end
       end
     else
       create_new_user(params[:user])
     end
+  end
+
+  # TODO: only admins or same users should be able to edit:
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+  
+  # TODO: only admins or same users should be able to update:
+  def update
+    user = User.find_by_id(params[:id])
+    puts "---------------"
+    puts "UPDATE CALLED WITH: #{user}"
+    if user.update_attributes(params[:user])
+      puts "after update: #{user}"
+      if(user.save)
+        if(!user.active?)
+          create_or_update_openid_user(params, user)
+          return
+        else
+          flash[:notice] = "Your account has been saved"
+          redirect_to root_url
+          return
+        end
+      end
+    end
+    render :action => 'edit'
   end
   
   def activate
@@ -69,18 +71,36 @@ class UsersController < ApplicationController
   
   protected
   
+  def create_or_update_openid_user(attributes, user=nil)
+    user ||= User.new
+    user.update_attributes(attributes)
+    if(user.valid?)
+      # This transitions the user from passive to active:
+      puts "inside valid user - about to register_openid!"
+      puts "user: #{user}"
+      user.register_openid!
+      puts "exception didn't throw"
+      return finish_creation(user)
+    else
+      user.save(false)
+      self.current_user = user
+      flash[:notice] = "You are now signed in, let's finish creating your account."
+      return redirect_to(:controller => 'users', :action => 'edit', :id => user)
+    end
+  end
+  
   def create_new_user(attributes)
     @user = User.new(attributes)
-    if @user && @user.valid?
-      if @user.not_using_openid?
-        @user.register!
-      else
-        @user.register_openid!
-      end
+    if @user && @user.valid? && @user.not_using_openid?
+      @user.register!
     end
     
-    if @user.errors.empty?
-      successful_creation(@user)
+    finish_creation(@user)
+  end
+  
+  def finish_creation(user)
+    if user.errors.empty?
+      successful_creation(user)
     else
       failed_creation
     end
@@ -88,10 +108,10 @@ class UsersController < ApplicationController
   
   def successful_creation(user)
     flash[:notice] = "Thanks for signing up!"
-    if @user.not_using_openid?
+    if user.not_using_openid?
       flash[:notice] << " We're sending you an email with your activation code."
     else
-      self.current_user = user unless user.not_using_openid?
+      self.current_user = user
     end
     redirect_back_or_default(root_path)
   end

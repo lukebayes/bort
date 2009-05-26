@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
   def label
     name || email
   end
+  
+  def to_s
+    return "[User id=#{id} name=#{name} login=#{login} email=#{email} identity_url=#{identity_url} state=#{state}]"
+  end
 
   protected
     
