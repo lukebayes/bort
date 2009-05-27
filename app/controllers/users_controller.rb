@@ -17,7 +17,7 @@ class UsersController < ApplicationController
           create_new_openid_user(options)
         else
           @user = User.new
-          failed_creation(result.message || "Sorry, something went wrong with the OpenID services")
+          failed_creation(@user, result.message || "Sorry, something went wrong with the OpenID services")
         end
       end
     else
@@ -110,7 +110,7 @@ class UsersController < ApplicationController
     if user.errors.empty?
       successful_creation(user)
     else
-      failed_creation
+      failed_creation(user)
     end
   end
   
@@ -124,9 +124,9 @@ class UsersController < ApplicationController
     redirect_back_or_default(root_path)
   end
   
-  def failed_creation(message = 'Sorry, there was an error creating your account')
+  def failed_creation(user = nil, message = 'Sorry, there was an error creating your account')
     flash[:error] = message
-    @user = User.new
+    @user = user || User.new
     render :controller => 'users', :action => 'new'
   end
 end
