@@ -96,8 +96,10 @@ describe UsersController do
   it "should activate user after user is valid"
   
   def create_user(options = {})
-    post :create, :user => { :login => 'quire', :email => 'quire@example.com',
-      :password => 'quire69', :password_confirmation => 'quire69' }.merge(options)
+    post :create, :user => { :login => 'quire', 
+                             :email => 'quire@example.com',
+                             :password => 'quire69', 
+                             :password_confirmation => 'quire69' }.merge(options)
   end
 end
 
