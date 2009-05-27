@@ -69,9 +69,18 @@ class UsersController < ApplicationController
   
   protected
   
+  def openid_user_exists?(user)
+    !User.find_by_identity_url(user.identity_url).nil?
+  end
+  
   def create_new_openid_user(attributes)
-    user = User.new
-    user.update_attributes(attributes)
+    user = User.new(attributes)
+    if(openid_user_exists?(user))
+      flash[:error] = "We already have an account for that user, please try Signing in."
+      redirect_to new_session_path
+      return
+    end
+    # user.update_attributes(attributes)
     user.save(false)
     self.current_user = user
     flash[:notice] = "You are now signed in, let's finish creating your account."
