@@ -2,6 +2,8 @@
 
 h1. Bort
 
+This is a fork of the Bort project - updated to work with Rails 2.3.2, and given many improvements around OpenID support. You can see a running demo of this code here: "http://auth-staging.heroku.com/":http://auth-staging.heroku.com/
+
 Bort is a base Rails 2.3 application that makes creating new projects easier and faster. Bort is developed and maintained by "Fudge Studios":http://www.fudgestudios.com, "Jim Neath":http://jimneath.org and "Matt Hall":http://matthall.wordpress.com
 
 If you have any suggestions for improvements then feel free to leave a request on "User Voice":http://bort.uservoice.com
