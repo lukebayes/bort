@@ -84,16 +84,8 @@ describe UsersController do
   it "does not activate user without required fields" do
     lambda do
       post :create, :identity_url => OPEN_ID_YAHOO
-    end.should change(User, :count).by(1)
+    end.should change(User, :count).by(0)
   end
-  
-  it "should use existing identity_url if possible"
-  
-  it "should handle missing information after authentication"
-  
-  it "should not activate user until user is valid"
-  
-  it "should activate user after user is valid"
   
   def create_user(options = {})
     post :create, :user => { :login => 'quire', 
