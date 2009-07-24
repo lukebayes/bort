@@ -2,8 +2,20 @@
 # from the project root directory.
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'spec'
-require 'spec/rails'
+
+begin
+  require 'spec'
+rescue LoadError => e
+  puts "You need to run: gem install rspec"
+  raise e
+end
+
+begin
+  require 'spec/rails'
+rescue LoadError => e
+  puts "You need to run: gem install rspec-rails"
+  raise e
+end
 
 include AuthenticatedTestHelper
 include AuthenticatedSystem
